@@ -16,12 +16,24 @@ export default function Home(){
     
     return(
         <View style={styles.container}>
+           
             <Text style={styles.textPage}> Welcome to EdAppS </Text>
-            <TouchableOpacity style={[styles.btnArea, {backgroundColor: '#D60E00', marginBottom: 15, marginTop: 50}]} onPress={navegarLogin}>
-                <Text style={[styles.textL, {color: '#fff'}]}>Sign In</Text>
+
+            <TouchableOpacity 
+                style={[styles.btnArea, 
+                {backgroundColor: '#D60E00', 
+                marginBottom: 15,
+                marginTop: 50}]}   
+                onPress={navegarLogin}>
+
+               <Text style={[styles.textL, {color: '#fff'}]}>Sign In</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btnArea} onPress={navegarCadastro}  >
-                <Text style={styles.textL}>Sign Up</Text>
+          
+            <TouchableOpacity 
+            style={styles.btnArea} 
+            onPress={navegarCadastro}>
+
+               <Text style={styles.textL}>Sign Up</Text>
             </TouchableOpacity>
 
             <View style={styles.rodape}>

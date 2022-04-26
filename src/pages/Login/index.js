@@ -1,9 +1,35 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, } from 'react-native';
+
+import firebase from '../FirebaseApi/FirebaseConnection';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function Login(){
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigation = useNavigation();
+    
+    async function logando(){
+        await firebase.auth().signInWithEmailAndPassword(email, password)
+        .then( (value) => {
+            navigation.navigate('Acesso', {user: value.user.email});
+        
+        })
+        .catch( (erro) => {
+            alert('Algo deu errado !!');
+            return;
+        })
+
+        setEmail('');
+        setPassword('');
+
+    }
+
+    async function cadastrar(){
+        navigation.navigate('Cadastro')
+    }
 
 
 
@@ -16,27 +42,38 @@ export default function Login(){
 
             <TextInput
             style={styles.inputTxt}
-            placeholder='E-mail or Phone Number'
+            value={email}
+            onChangeText={(texto) => setEmail(texto)}
+            placeholder='E-mail'
             />
+
              <TextInput
             style={[styles.inputTxt, {marginBottom: 40,}]}
             placeholder='Password'
+            value={password}
+            onChangeText={(texto) => setPassword(texto)}
+            secureTextEntry={true}
             />
 
-            <TouchableOpacity style={[styles.btnArea, {backgroundColor: '#F34444'}]}>
-                <Text style={styles.txtbtn}>Log in</Text>
+            <TouchableOpacity 
+            onPress={logando} 
+            style={[styles.btnArea, 
+            {backgroundColor: '#F34444',
+            }]}>
+                <Text style={styles.txtbtn}>Acessar</Text>
             </TouchableOpacity>
-                
-            <Text style={styles.orTxt}>OR</Text>
+
+            <TouchableOpacity
+             onPress={cadastrar}
+             style={[styles.btnArea, 
+             {marginTop: 20, 
+             backgroundColor: '#009933',
+             }]}>
+                 
+                <Text style={styles.txtbtn}>Cadastrar</Text>
+            </TouchableOpacity>
                
-            <TouchableOpacity style={[styles.btnArea, {backgroundColor: '#3b5998', marginBottom: 20,}]}>
-                <Text style={styles.txtbtn}>Login with Facebook</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={[styles.btnArea, {backgroundColor: '#db4a39'}]}>
-                <Text style={styles.txtbtn}>Login with Google</Text>
-            </TouchableOpacity>
-
+             
             
             
         </View>
@@ -69,14 +106,9 @@ const styles = StyleSheet.create({
         margin: 18,
         paddingLeft: 20,
     },
-    orTxt:{
-        fontSize: 18,
-        margin: 30,
-        marginBottom: 45,
-        fontWeight: 'bold',
-    },
+
     btnArea:{
-        width: '70%',
+        width: '80%',
         height: 45,
         borderRadius: 20,
         borderWidth: 0,
@@ -85,6 +117,6 @@ const styles = StyleSheet.create({
        },
        txtbtn:{
            color: '#fff',
-           fontSize: 17,
+           fontSize: 19,
        }
 })
