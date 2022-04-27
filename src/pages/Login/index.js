@@ -11,21 +11,21 @@ export default function Login(){
     const [password, setPassword] = useState('');
     const navigation = useNavigation();
     
-    async function logando(){
-        await firebase.auth().signInWithEmailAndPassword(email, password)
-        .then( (value) => {
-            navigation.navigate('Acesso', {user: value.user.email});
-        
-        })
-        .catch( (erro) => {
+    async   function logando(){
+            await firebase.auth().signInWithEmailAndPassword(email, password)
+            .then( (value) => {
+                navigation.navigate('Acesso', {user: value.user.email})
+            })
+            .catch( (error) => {
             alert('Algo deu errado !!');
             return;
-        })
+            });
 
-        setEmail('');
-        setPassword('');
-
-    }
+            setEmail('');
+            setPassword('');
+            
+        }
+        
 
     async function cadastrar(){
         navigation.navigate('Cadastro')
@@ -59,8 +59,9 @@ export default function Login(){
             onPress={logando} 
             style={[styles.btnArea, 
             {backgroundColor: '#F34444',
+            marginBottom: 30,
             }]}>
-                <Text style={styles.txtbtn}>Acessar</Text>
+                <Text style={styles.txtbtn}>Sign In</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -70,7 +71,7 @@ export default function Login(){
              backgroundColor: '#009933',
              }]}>
                  
-                <Text style={styles.txtbtn}>Cadastrar</Text>
+                <Text style={styles.txtbtn}>Sign Up</Text>
             </TouchableOpacity>
                
              

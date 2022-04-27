@@ -39,7 +39,7 @@ export default function App(){
 
                 <Stack.Screen name='Acesso' component={Acesso} 
                  options={{
-                     headerShown: true,
+                     headerShown: false,
                  }}
                  />
 
