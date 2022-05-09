@@ -3,11 +3,6 @@ import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
 
 import { useNavigation } from '@react-navigation/native';
 import firebase from '../FirebaseApi/FirebaseConnection';
-import { useReducer } from 'react/cjs/react.production.min';
-
-
-  
-
 
 export default function Cadastro(){
 

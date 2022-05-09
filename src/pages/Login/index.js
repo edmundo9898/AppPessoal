@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, } from 'react-native';
 
 import firebase from '../FirebaseApi/FirebaseConnection';
@@ -30,7 +30,6 @@ export default function Login(){
     async function cadastrar(){
         navigation.navigate('Cadastro')
     }
-
 
 
     return(
@@ -72,9 +71,7 @@ export default function Login(){
              }]}>
                  
                 <Text style={styles.txtbtn}>Sign Up</Text>
-            </TouchableOpacity>
-               
-             
+            </TouchableOpacity>         
             
             
         </View>

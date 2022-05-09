@@ -59,8 +59,6 @@ const styles = StyleSheet.create({
         color: 'red',
         fontWeight: 'bold',
 
-
-
     },
     btnArea:{
         borderWidth: 2,
